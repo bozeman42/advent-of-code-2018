@@ -1,0 +1,2 @@
+require('./checksum')
+require('./oneDiffer')

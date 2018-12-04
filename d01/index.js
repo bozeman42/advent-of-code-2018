@@ -1,0 +1,2 @@
+require('./frequencies')
+require('./duplicates')

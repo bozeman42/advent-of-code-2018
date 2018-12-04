@@ -1,0 +1,11 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "description": "Advent of code! two puzzles per day for 25 days",
+  "main": "index.js",
+  "author": "Aaron Kvarnlov-Leverty <bozeman42@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  }
+}
