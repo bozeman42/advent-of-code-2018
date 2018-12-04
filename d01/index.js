@@ -1,2 +1,2 @@
-require('./frequencies')
-require('./duplicates')
+require('./d01p1')
+require('./d01p2')

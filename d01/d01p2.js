@@ -1,4 +1,4 @@
-const arr = require('./frequencies').arr
+const arr = require('./d01p1').arr
 const map = {}
 
 let frequency = 0

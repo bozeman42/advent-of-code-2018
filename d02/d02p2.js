@@ -1,4 +1,4 @@
-const input = require('./checksum').input
+const input = require('./d02p1').input
 let result = ''
 console.time('d2p2 - oneLetterDifference')
 input.some((code, codeIndex, arr) => {

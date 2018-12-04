@@ -1,2 +1,2 @@
-require('./checksum')
-require('./oneDiffer')
+require('./d02p1')
+require('./d02p2')
