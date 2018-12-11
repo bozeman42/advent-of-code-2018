@@ -1,53 +1,53 @@
-const input = `83, 153
-201, 74
-291, 245
-269, 271
-222, 337
-291, 271
-173, 346
-189, 184
-170, 240
-127, 96
-76, 46
-92, 182
-107, 160
-311, 142
-247, 321
-303, 295
-141, 310
-147, 70
-48, 41
-40, 276
-46, 313
-175, 279
-149, 177
-181, 189
-347, 163
-215, 135
-103, 159
-222, 304
-201, 184
-272, 354
-113, 74
-59, 231
-302, 251
-127, 312
-259, 259
-41, 244
-43, 238
-193, 172
-147, 353
-332, 316
-353, 218
-100, 115
-111, 58
-210, 108
-101, 175
-185, 98
-256, 311
-142, 41
-68, 228
-327, 194`
+const input = `249, 60
+150, 332
+174, 83
+287, 329
+102, 338
+111, 201
+259, 96
+277, 161
+143, 288
+202, 311
+335, 55
+239, 148
+137, 224
+48, 214
+186, 87
+282, 334
+147, 157
+246, 191
+241, 181
+286, 129
+270, 287
+79, 119
+189, 263
+324, 280
+316, 279
+221, 236
+327, 174
+141, 82
+238, 317
+64, 264
+226, 151
+110, 110
+336, 194
+235, 333
+237, 55
+230, 137
+267, 44
+258, 134
+223, 42
+202, 76
+159, 135
+229, 238
+197, 83
+173, 286
+123, 90
+314, 165
+140, 338
+347, 60
+108, 76
+268, 329`
   .split('\n')
   .map((item) => {
     const coords = item.split(', ')
@@ -71,8 +71,11 @@ input.forEach(seed => {
   }
   grid[seed.x][seed.y] = seed
 })
-
+let count = 0
+let maxDepth = 0
 function testPoint(point, input, seed, prevPoint = point) {
+  count++
+  maxDepth = Math.max(count,maxDepth)
   if (point.distances && point.testedFrom === seed) {
     return 0
   }
@@ -110,7 +113,7 @@ function testPoint(point, input, seed, prevPoint = point) {
 
 function testPoints(x,y,input,seed,point){
   populatePoints(x,y)
-  return 1 + testPoint(grid[x][y+1],input,seed,point) + testPoint(grid[x][y-1],input,seed,point) + testPoint(grid[x-1][y],input,seed,point) + testPoint(grid[x+1][y],input,seed,point)
+  return 1 + testPoint(grid[x][y-1],input,seed,point) + testPoint(grid[x][y+1],input,seed,point) + testPoint(grid[x-1][y],input,seed,point) + testPoint(grid[x+1][y],input,seed,point)
 }
 
 function populatePoints(x,y){
@@ -148,14 +151,16 @@ const result = input.reduce((prev,point) => {
   return Math.max(prev,testPoint(point, input,point.id))
 },0)
 console.timeEnd('d6 recursion')
+console.log(maxDepth)
 console.log(result)
 
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 
-canvas.height = window.innerHeight - 50
-canvas.width = window.innerWidth - 50
-
+// canvas.height = window.innerHeight - 50
+// canvas.width = window.innerWidth - 50
+canvas.height = 800
+canvas.width = 800
 
 const inputMaxXY = input.reduce((prev,point) => {
   return {x: Math.max(point.x,prev.x),y: Math.max(point.y,prev.y)}
@@ -166,13 +171,24 @@ const PIXEL_HEIGHT = canvas.height / inputMaxXY.y
 const scale = (point) => {
   const maxX = inputMaxXY.x
   const maxY = inputMaxXY.y
-  return {x: (point.x / maxX) * window.innerWidth, y: (point.y / maxY) * window.innerHeight}
+  return {x: (point.x / maxX) * canvas.width, y: (point.y / maxY) * canvas.width}
 }
-
 grid.forEach(row => {
   row.forEach(point => {
     const { x , y } = scale(point)
     ctx.fillStyle = point.color
     ctx.fillRect(x,y,PIXEL_WIDTH,PIXEL_HEIGHT)
   })
+})
+input.forEach(item => {
+  const { x, y } = scale(item)
+  ctx.moveTo(x,y)
+  ctx.fillStyle = 'white'
+  ctx.strokeStyle = 'black'
+  ctx.lineWidth = 2
+  ctx.beginPath()
+  ctx.arc(x,y,5,0,Math.PI * 2)
+  ctx.stroke()
+  ctx.fill()
+  ctx.closePath()
 })
