@@ -94,5 +94,5 @@ function distances (point,seeds) {
 const result = input.reduce((prev,point) => {
   return Math.max(prev,testPoint(point, input,point.id))
 },0)
-console.log(infinites)
+
 console.log(result)
