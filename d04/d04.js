@@ -60,5 +60,5 @@ function processInput(input){
   const secondResult = totalSleep.reduce((prev, guard) => {
     return guard.mostFrequentlyAsleep.max > prev.max ? { id: guard.id, max: guard.mostFrequentlyAsleep.max, checksum: guard.id * guard.mostFrequentlyAsleep.index} : prev
   }, {max: 0})
-  console.log(result, secondResult)
+  console.log(result.checksum, secondResult.checksum)
 }
