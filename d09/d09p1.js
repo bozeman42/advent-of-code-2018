@@ -27,5 +27,9 @@ function game(players, maxValue) {
 }
 
 // 471 players; last marble is worth 72026 points
-
+console.time('game1')
+console.log(game(471, 72026))
+console.timeEnd('game1')
+console.time('game2')
 console.log(game(471, 7202600))
+console.timeEnd('game2')
