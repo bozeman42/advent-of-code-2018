@@ -5,7 +5,7 @@ body {
 
 canvas {
   position: absolute;
-  top: 400px;
-  left: 600px;
+  top: 100px;
+  left: 100px;
   z-index: -1;
 }
