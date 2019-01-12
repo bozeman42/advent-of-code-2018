@@ -27,13 +27,17 @@ class LinkedList {
     return this
   }
 
-  next() {
-    this.currentNode = this.currentNode.next
+  next (n = 1) {
+    for(let i = 0; i < n; i++) {
+      this.currentNode = this.currentNode.next
+    }
     return this
   }
 
-  prev() {
-    this.currentNode = this.currentNode.prev
+  prev (n = 1) {
+    for(let i = 0; i < n; i++) {
+      this.currentNode = this.currentNode.prev
+    }
     return this
   }
 

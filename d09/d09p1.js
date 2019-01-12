@@ -12,9 +12,7 @@ function game(players, maxValue) {
     currentMarble++
     if (currentMarble % 23 === 0) {
       scores[currentPlayer] += currentMarble
-      for (let i = 0; i < 7; i++) {
-        gameList.prev()
-      }
+      gameList.prev(7)
       scores[currentPlayer] += gameList.read()
       gameList.delete()
     } else {
