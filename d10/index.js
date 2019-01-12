@@ -1,1 +1,1 @@
-require('./d10p1')
+require('./server')

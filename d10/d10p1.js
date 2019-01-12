@@ -1,6 +1,0 @@
-const fs = require('fs')
-const input = fs.readFileSync('./d10/input.txt')
-  .toString()
-  .trim()
-  .split('\n')
-console.log(input.length)
