@@ -8,14 +8,13 @@
   <link rel="stylesheet" href="./style.css">
   </head>
 <body>
-  <input id="time-slider" type="range" min=10000 max=15000 value=5000 />
+  <input id="time-slider" type="range" min=0 max=20000 value=0 /><input id="timestamp" type="number" value=0 />
   <div>
-    Min: <input type="number" id="min" value=10000 />
+    Min: <input type="number" id="min" value=0 />
   </div>
   <div>
-    Max <input type="number" id="max" value=11000 />
+    Max <input type="number" id="max" value=20000 />
   </div>
-  <p><b id="timestamp"></b></p>
   <canvas id="canvas"></canvas>
   <script type="module" src="./d10p1.js"></script>
 </body>

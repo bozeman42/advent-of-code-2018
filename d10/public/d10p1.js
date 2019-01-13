@@ -13,11 +13,11 @@ async function getData() {
 
 getData()
 
-const timestamp = document.querySelector('#timestamp')
 const canvas = document.querySelector('#canvas')
 canvas.height = CANVAS_HEIGHT
 canvas.width = CANVAS_WIDTH
 const ctx = canvas.getContext('2d')
+const timestamp = document.querySelector('#timestamp')
 const slider = document.querySelector('#time-slider')
 const min = document.querySelector('#min')
 const max = document.querySelector('#max')
@@ -46,10 +46,19 @@ max.addEventListener('input',e => {
 
 slider.addEventListener('input', e => {
   const { value } = e.target
+  timestamp.value = value
   if (data) {
-    timestamp.textContent = value
     data.setTime(value)
     draw(data, ctx)
+  }
+})
+
+timestamp.addEventListener('input',e => {
+  const { value } = e.target
+  slider.value = value
+  if (data) {
+    data.setTime(value)
+    draw(data,ctx)
   }
 })
 
