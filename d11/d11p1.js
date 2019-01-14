@@ -1,10 +1,12 @@
 const SERIAL_NUMBER = 1718
 const SummedAreaTable = require('./SummedAreaTable')
 
+const GRID_SIZE = 300
+
 let grid = []
 function populateGrid() {
-  for (let x = 0; x < 300; x += 1) {
-    for (let y = 0; y < 300; y += 1) {
+  for (let x = 0; x < GRID_SIZE; x += 1) {
+    for (let y = 0; y < GRID_SIZE; y += 1) {
       if (y === 0) {
         grid[x] = []
       }
@@ -27,10 +29,12 @@ function bestSquare(grid) {
     y: -1,
     size: 0
   }
+  console.time('SummedAreaTable')
   let sat = new SummedAreaTable(grid)
-  for (let squareSize = 1; squareSize <= 300; squareSize += 1) {
-    for (let x = 0; x < 300 - squareSize; x += 1) {
-      for (let y = 0; y < 300 - squareSize; y += 1) {
+  console.timeEnd('SummedAreaTable')
+  for (let squareSize = 1; squareSize <= GRID_SIZE; squareSize += 1) {
+    for (let x = 0; x < GRID_SIZE - squareSize; x += 1) {
+      for (let y = 0; y < GRID_SIZE - squareSize; y += 1) {
         let value = sat.squareValue(x, y, squareSize)
         if (value > bestSquare.value) {
           bestSquare = {
@@ -55,9 +59,9 @@ function findBestSquareBruteForce(grid) {
     y: -1,
     size: 0
   }
-  for (let squareSize = 1; squareSize <= 300; squareSize += 1) {
-    for (let x = 0; x < 300 - squareSize; x += 1) {
-      for (let y = 0; y < 300 - squareSize; y += 1) {
+  for (let squareSize = 1; squareSize <= GRID_SIZE; squareSize += 1) {
+    for (let x = 0; x < GRID_SIZE - squareSize; x += 1) {
+      for (let y = 0; y < GRID_SIZE - squareSize; y += 1) {
         let squareTotal = 0
         for (let xp = 0; xp < squareSize; xp += 1) {
           for (let yp = 0; yp < squareSize; yp += 1) {
@@ -78,9 +82,9 @@ function findBestSquareBruteForce(grid) {
   return bestSquare
 }
 
-console.time('SummedAreaTable')
+console.time('Solution')
 console.log(bestSquare(grid))
-console.timeEnd('SummedAreaTable')
+console.timeEnd('Solution')
 
 // console.time('brute force')
 // console.log(findBestSquareBruteForce(grid))
